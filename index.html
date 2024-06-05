@@ -38,7 +38,15 @@
             <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu" type="password" class="form-control">
             <span class="form-message"></span>
           </div>
-      
+          <div class="form-group horizontal">
+            <label for="" class="form-label">Giới tính</label>
+            <div>
+              <input type="radio" name="gender" id="" value="male">
+              <label for=""></label>
+            </div>
+            <input type="radio" name="gender" id="" value="female">
+            <span class="form-message"></span>
+          </div>
           <button class="form-submit">Đăng ký</button>
         </form>
       
@@ -48,6 +56,8 @@
         //mong muốn của chúng ta là khi người dùng nhập vào input thì sẽ kiểm tra ngay lập tức
         Validator({
             form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
             rules: [
                 Validator.isRequired('#fullname'),
                 Validator.isRequired('#email'),
@@ -55,6 +65,7 @@
                 Validator.isRequired('#password'),
                 Validator.minLength('#password', 6),
                 Validator.isRequired('#password_confirmation'),
+                Validator.isRequired('input[name="gender"]', 'Vui lòng chọn giới tính'),
                 Validator.isConfirmed('#password_confirmation', function() {
                     return document.querySelector('#form-1 #password').value;
                 }, 'Mật khẩu nhập lại không chính xác')
